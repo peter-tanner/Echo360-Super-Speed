@@ -6,7 +6,7 @@
 
 ### [Mirror (Greasyfork)](https://greasyfork.org/en/scripts/501694-echo360-super-speed)
 
-Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options. NOTE: Only works on Firefox!
+Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options.
 
 ![Dropdown with 4x and 3x speeds](superspeed.png)
 

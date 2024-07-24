@@ -1,27 +1,26 @@
 // ==UserScript==
 // @name        Echo360 Super Speed
 // @namespace   https://www.petertanner.dev/
-// @description Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options. NOTE: Only works on Firefox!
+// @description Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options.
 // @include     *://echo360.net.au/*
 // @include     *://echo360.org.uk/*
 // @include     *://echo360.org/*
 // @include     *://echo360.org.au/*
-// @version     1
+// @version     1.1
 // @author      Peter Tanner
-// @namespace   https://github.com/peter-tanner/Echo360-Super-Speed/
-// @supportURL  https://github.com/peter-tanner/Echo360-Super-Speed/issues
-// @downloadURL https://github.com/peter-tanner/Echo360-Super-Speed/echo360-super-speed.user.js
-// @updateURL   https://github.com/peter-tanner/Echo360-Super-Speed/echo360-super-speed.user.js
+// @namespace   https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/
+// @supportURL  https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/issues
+// @downloadURL https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/echo360-super-speed.user.js
+// @updateURL   https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/echo360-super-speed.user.js
 // @license     GPL-3.0
 // @website     https://www.petertanner.dev/
-// @grant       GM_xmlhttpRequest
 // @run-at      document-start
 // ==/UserScript==
 
 /* USER CUSTOMIZATION BEGIN */
 // NOTE: Add (or remove) speeds to this array to your liking.
 // Note that there is a browser set limit of 16x, and speeds above 4x are muted.
-// https://searchfox.org/mozilla-central/rev/f1c881ba5603410dacbe52874053af38bd825c3b/dom/html/HTMLMediaElement.cpp#179-183
+// https://searchfox.org/mozilla-central/rev/f1c881ba5603410dacbe52874053af38bd825c3b/dom/html/HTMLMediascript_Element.cpp#179-183
 const selected_speeds = [4, 3, 2, 1.75, 1.5, 1.25, 1, 0.75];
 // const selected_speeds = [2, 1.75, 1.5, 1.25, 1, 0.75, 0.5, 0.25]; // Default Echo360 speeds.
 
@@ -51,21 +50,21 @@ const min_speed = Math.min(...selected_speeds);
 var player_calling_context =
   "console.error('Echo360 super speed failed to load :(')";
 
-//   This only works on firefox.
-window.addEventListener("beforescriptexecute", (e) => {
-  const src = e.target.src;
-  if (src.search(/echoPlayerV2FullApp\.react-bundle\.js/) != -1) {
+new MutationObserver(async (mutations, observer) => {
+  let script_elem = mutations
+    .flatMap((e) => [...e.addedNodes])
+    .filter((e) => e.tagName === "SCRIPT")
+    .find((e) => e.src.match(/echoPlayerV2FullApp\.react-bundle\.js/));
+
+  if (script_elem) {
     // Do not load the unmodified player code
-    e.preventDefault();
-    e.stopPropagation();
+    observer.disconnect();
+    script_elem.remove();
 
     // Download the player code for modification...
-    GM_xmlhttpRequest({
-      method: "GET",
-      url: e.target.src,
-      onload: (response) => {
-        var player_code = response.responseText;
-
+    await fetch(script_elem.src)
+      .then((e) => e.text())
+      .then((player_code) => {
         player_code = player_code.replace(
           // Overwrite all previous speeds in case the user wants to remove the
           // default speeds
@@ -90,22 +89,23 @@ window.addEventListener("beforescriptexecute", (e) => {
           player_calling_context +
           "; console.log('Echo360 super speed has successfully been loaded :3')";
 
-        // Create a new script tag containing the modified player
-        var new_script = document.createElement("script");
+        // Create a new script tag containing the modified player & add to head
+        const new_script = document.createElement("script");
         new_script.type = "text/javascript";
         new_script.textContent = player_code;
-        var head = document.getElementsByTagName("script")[4];
-        head.append(new_script);
-      },
-    });
+        document.getElementsByTagName("head")[0].append(new_script);
+      });
   }
+}).observe(document, {
+  childList: true,
+  subtree: true,
 });
 
 window.addEventListener(
   "load",
   () => {
-    const script_tags = document.getElementsByTagName("script");
-    player_calling_context = script_tags[script_tags.length - 1].innerText;
+    const script_elems = document.getElementsByTagName("script");
+    player_calling_context = script_elems[script_elems.length - 1].innerText;
   },
   false
 );
