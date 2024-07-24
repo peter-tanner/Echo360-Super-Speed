@@ -8,6 +8,8 @@
 
 Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options. NOTE: Only works on Firefox!
 
+![Dropdown with 4x and 3x speeds](superspeed.png)
+
 ## Adding your own speeds
 
 Open the userscript file, then modify the `selected_speeds` and/or `speed_hotkey_increment` constants which are in the `USER CUSTOMIZATION` section.
