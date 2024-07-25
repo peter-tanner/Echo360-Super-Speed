@@ -2,13 +2,44 @@
 
 > _Note that this project is not endorsed by or affiliated with Echo360_
 
-### [Install userscript](https://github.com/peter-tanner/Echo360-Super-Speed/raw/master/echo360-super-speed.user.js)
+### [Click here to install userscript](https://github.com/peter-tanner/Echo360-Super-Speed/raw/master/echo360-super-speed.user.js)
 
-### [Mirror (Greasyfork)](https://greasyfork.org/en/scripts/501694-echo360-super-speed)
+### [Alternative installation link (Greasyfork)](https://update.greasyfork.org/scripts/501694/Echo360%20Super%20Speed.user.js)
 
 Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options. Works on Chromium (Google Chrome, Brave, etc.) and Firefox
 
-![Dropdown with 4x and 3x speeds](superspeed.png)
+<img src="docs/superspeed.png" style="max-height: 40vh" />
+<!-- ![Dropdown with 4x and 3x speeds](superspeed.png) -->
+
+## Installation guide
+
+This should only take 5 minutes.
+
+### 1. Install Violetmonkey
+
+If you already have a userscript manager you can skip this step.
+
+Click "Install" or "Get" then accept the permissions
+
+### [Firefox installation](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
+
+### [Google Chrome installation](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
+
+### [Microsoft Edge installation](https://microsoftedge.microsoft.com/addons/detail/eeagobfjdenkkddmbclomhiblgggliao)
+
+### 2. Install this Userscript
+
+Click any one of these links and it should redirect you to an install page.
+
+### [Click here to install userscript](https://github.com/peter-tanner/Echo360-Super-Speed/raw/master/echo360-super-speed.user.js)
+
+### [Alternative installation link (Greasyfork)](https://update.greasyfork.org/scripts/501694/Echo360%20Super%20Speed.user.js)
+
+Click the "Install" button and you should have 4x and 3x speeds on Echo360 (refresh any open Echo360 pages).
+
+![install](docs/install.png)
+
+### Done!
 
 ## Adding your own speeds
 
