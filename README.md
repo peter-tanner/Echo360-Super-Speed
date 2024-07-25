@@ -6,7 +6,7 @@
 
 ### [Mirror (Greasyfork)](https://greasyfork.org/en/scripts/501694-echo360-super-speed)
 
-Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options.
+Adds faster speed options (4x, 3x) to Echo360 player and allows the user to add their own speed options. Works on Chromium (Google Chrome, Brave, etc.) and Firefox
 
 ![Dropdown with 4x and 3x speeds](superspeed.png)
 
@@ -20,7 +20,7 @@ For example, if I wanted only 4x, 3x and 2x options, I can replace the `selected
 const selected_speeds = [4, 3, 2];
 ```
 
-⚠ Note that there is a browser set limit of 16x, and speeds above 4x are muted, according to [these constants in the firefox source code](https://searchfox.org/mozilla-central/rev/f1c881ba5603410dacbe52874053af38bd825c3b/dom/html/HTMLMediaElement.cpp#179-183)
+⚠ Note that there is a browser-set speed limit of 16x and speeds above 4x are muted, according to [the constants set in the brower's source](https://stackoverflow.com/a/32320020). This applies to both Firefox and Chromium.
 
 ## Current issues
 

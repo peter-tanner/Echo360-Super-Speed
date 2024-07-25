@@ -5,8 +5,9 @@
 // @include     *://echo360.net.au/*
 // @include     *://echo360.org.uk/*
 // @include     *://echo360.org/*
+// @include     *://echo360.ca/*
 // @include     *://echo360.org.au/*
-// @version     1.1
+// @version     1.2
 // @author      Peter Tanner
 // @namespace   https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/
 // @supportURL  https://github.com/peter-tanner/Echo360-Super-Speed-Userscript/issues
