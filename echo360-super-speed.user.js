@@ -55,7 +55,7 @@ new MutationObserver(async (mutations, observer) => {
   let script_elem = mutations
     .flatMap((e) => [...e.addedNodes])
     .filter((e) => e.tagName === "SCRIPT")
-    .find((e) => e.src.match(/echoPlayerV2FullApp\.react-bundle\.js/));
+    .find((e) => e.src.match(/echoPlayerV2Full(?:Bootstrap)?App\.react-bundle\.js/));
 
   if (script_elem) {
     // Do not load the unmodified player code
